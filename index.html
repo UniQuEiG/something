@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Aecha 🥺</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Powder blue gradient background */
+            background: linear-gradient(135deg, #e0f2f1 0%, #b3e5fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(135, 206, 235, 0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+            border: 2px solid #81d4fa;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .gif-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            border: 2px solid #81d4fa;
+        }
+
+        h1 {
+            color: #0288d1;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #455a64;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .highlight {
+            color: #0288d1;
+            font-weight: bold;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #0288d1;
+            color: white;
+            box-shadow: 0 4px 15px rgba(2, 136, 209, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #03a9f4;
+        }
+
+        #noBtn {
+            background-color: #81d4fa;
+            color: white;
+            position: absolute;
+        }
+
+        /* Floating particles effect */
+        .heart {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: float 4s linear infinite;
+            bottom: -50px;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <div class="gif-container">
+            <img id="cardImage" src="https://cdn.discordapp.com/emojis/993906378869592164.webp?size=96" alt="Cute begging bear">
+        </div>
+        <h1 id="title">I'm Sorry, Aecha... 🥺</h1>
+        <p id="message">
+            এর আগে ওই অচেনা মেয়েটার কথা তুলে আমি সত্যিই বোকামি করেছি; আর তোমার মেজাজটা যে নষ্ট করে দিয়েছি, সেটা আমার একদমই ভালো লাগছে না। <span class="highlight">I promise I will never do it again</span>. 
+            <br><br>
+            Forgive me? 👉👈
+        </p>
+
+        <div class="btn-group" id="btnGroup">
+            <button id="yesBtn" onclick="forgiven()">Yes</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+    </div>
+
+    <script>
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 20);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 20);
+            
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function forgiven() {
+            document.getElementById('title').innerText = "Yey! Thank You! 🥰";
+            document.getElementById('message').innerHTML = "Chal Abb Aaja we will watch Todays match!";
+            document.getElementById('cardImage').src = "https://cdn.discordapp.com/emojis/1465712665627197553.webp?size=96&animated=true"; 
+            document.getElementById('btnGroup').style.display = 'none';
+            
+            for(let i=0; i<30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = ['💙', '✨', '🫧', '❄️', '⭐'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 600);
+    </script>
+</body>
+</html>
